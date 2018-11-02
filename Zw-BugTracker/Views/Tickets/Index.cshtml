@@ -1,0 +1,120 @@
+﻿@model IEnumerable<Zw_BugTracker.Models.Ticket>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<body>
+    <div id="page-wrapper">
+        <br />
+        <h2>Index</h2>
+
+        @if (User.IsInRole("Project Manager"))
+        {
+            <span>@Html.ActionLink("Assign Tickets", "TicketAssignment", "ProjMan")</span>
+        }
+
+        @if (User.IsInRole("Submitter"))
+        {
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+        }
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AssignedToUser)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OwnerUser)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>*@
+                    <th>
+                        @Html.DisplayNameFor(model => model.TicketPriority)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TicketStatus)
+                    </th>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.TicketType)
+                    </th>*@
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.Project)
+                    </th>*@
+                    <th>
+                        @Html.DisplayNameFor(model => model.Created)
+                    </th>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.Updated)
+                    </th>*@
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AssignedToUser.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OwnerUser.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TicketPriority.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TicketStatus.Name)
+                        </td>
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.TicketType.Name)
+                        </td>*@
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.Project.Name)
+                        </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Created)
+                        </td>
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.Updated)
+                        </td>*@
+                        <td>
+                            <div class="row">
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                            </div>
+                            <div class="row">
+                                @Html.ActionLink("Details", "Details", new { id = item.Id })
+                            </div>
+                            <div class="row">
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            </div>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <div class="row">
+                                    @Html.ActionLink("Add Comment", "Create", "TicketComments", new { id = item.Id }, null)
+                                </div>
+                                <div class="row">
+                                    @Html.ActionLink("Add Attachment", "Create", "TicketAttachments", new { id = item.Id}, null)
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>

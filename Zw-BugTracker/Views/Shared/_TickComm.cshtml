@@ -1,0 +1,48 @@
+﻿@model Zw_BugTracker.Models.Ticket
+
+<h3>Comments</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Title")
+        </th>
+        <th>
+            @Html.DisplayName("Body")
+        </th>
+        <th>
+            @Html.DisplayName("Created")
+        </th>
+        <th>
+            @Html.DisplayName("Updated")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.TicketComments)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Body)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Updated)
+            </td>
+            <td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="row">
+                        @Html.ActionLink("Delete", "Delete", new { Id = item.Id })
+                    </div>
+                }
+            </td>
+        </tr>
+    }
+</table>
+        

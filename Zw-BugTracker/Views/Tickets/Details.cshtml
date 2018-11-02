@@ -1,0 +1,81 @@
+﻿@model Zw_BugTracker.Models.Ticket
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<style>
+    .tickstat
+    {
+        width: 500px;
+        overflow: auto;
+    }
+
+    .projstat {
+        width: 310px;
+        overflow: auto;
+    }
+
+    .tickxtra {
+        width: 450px;
+        overflow: auto;
+    }
+
+    .tickuser {
+        width: 215px;
+        overflow: auto;
+    }
+
+    .tickhist {
+        width: 615px;
+        overflow: auto;
+    }
+</style>
+
+<body>
+    <div id="page-wrapper">
+        <br/>
+        <h2 class="text-center"><b><u>Details</u></b></h2>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 container tickstat">
+                    @Html.Partial("_TickStats")
+                </div>
+                <div class="col-lg-3 container projstat">
+                    @Html.Partial("_ProjStats")
+                </div>
+                <div class="col-lg-3 container tickuser">
+                    @Html.Partial("_TickUsers")
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="row container tickxtra">
+                        @Html.Partial("_TickComm")
+                    </div>
+                    <div class="row container tickxtra">
+                        @Html.Partial("_TickAttach")
+                    </div>
+                </div>
+                <div class="col-lg-7 container tickhist">
+                    @Html.Partial("_TickHist")
+                </div>
+            </div>
+        </div>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <p>
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        }
+    </div>
+</body>
+
+<style>
+    .bord 
+    {
+        border: 1px solid black;
+    }
+</style>

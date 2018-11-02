@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "RoleAssignment";
+}
+
+<body>
+    <div id="page-wrapper">
+        <div class="container">
+            <br />
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Role Assignment</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 text-center user">
+                    @Html.Label("Select User")
+                </div>
+                <div class="col-lg-6 text-center role">
+                    @Html.Label("Select Role")
+                </div>
+            </div>
+
+            @using (Html.BeginForm("RoleAssignment", "Admin", FormMethod.Post, new { enctype = "Multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="row">
+                    <div class="col-lg-6 users">
+                        @Html.DropDownList("Users", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <div class="col-lg-6 roles">
+                        @Html.DropDownList("Roles", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 text-center" style="padding:5px">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+
+<style>
+    .roles
+    {
+        padding-right: 200px;
+    }
+
+    .users
+    {
+        padding-left: 200px;
+    }
+
+    .role
+    {
+        padding-right: 100px;
+    }
+
+    .user
+    {
+        padding-left: 100px;
+    }
+</style>

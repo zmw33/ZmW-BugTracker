@@ -1,0 +1,80 @@
+﻿@model Zw_BugTracker.Models.Ticket
+@using System.Drawing.Imaging;
+
+<style>
+    .pic {
+        max-height: 50px;
+        max-width: 50px;
+    }
+</style>
+
+<h3>Attachments</h3>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("MediaUrl")
+        </th>
+        <th>
+            @Html.DisplayName("Description")
+        </th>
+        <th>
+            @Html.DisplayName("Created")
+        </th>
+    </tr> 
+
+    @foreach (var ticketAttachment in Model.TicketAttachments)
+    {
+        <tr>
+            <td>
+                @*@if (ticketAttachment.MediaUrl != null)
+        {
+            <img class="img-responsive pic" src="@Url.Content(ticketAttachment.MediaUrl)" alt="">
+        }*@
+                @if (ticketAttachment.MediaUrl.Contains("docx"))
+                {
+                    
+                    <a href="@Url.Content(ticketAttachment.MediaUrl)" target="_blank">
+                        <img class="pic" src="~/Img/if_docx_win_65892.png" />
+                        @Path.GetFileName(ticketAttachment.MediaUrl)
+                    </a>
+                }
+                else if (ticketAttachment.MediaUrl.Contains("pdf"))
+                {
+                    
+                    <a href="@Url.Content(ticketAttachment.MediaUrl)" target="_blank">
+                        <img class="pic" src="~/Img/if_pdf_65920.png" />    
+                        @Path.GetFileName(ticketAttachment.MediaUrl)
+                    </a>
+                }
+                else if (ticketAttachment.MediaUrl.Contains("png"))
+                {
+                    <a href="@Url.Content(ticketAttachment.MediaUrl)" target="_blank">
+                        <img class="pic" src="@Url.Content(ticketAttachment.MediaUrl)" />
+                        @Path.GetFileName(ticketAttachment.MediaUrl)
+                    </a>
+
+                }
+                else if (ticketAttachment.MediaUrl.Contains("jpg") || ticketAttachment.MediaUrl.Contains("jpeg"))
+                {
+                    <a href="@Url.Content(ticketAttachment.MediaUrl)" target="_blank">
+                        <img class="pic" src="@Url.Content(ticketAttachment.MediaUrl)" />
+                        @Path.GetFileName(ticketAttachment.MediaUrl)
+                    </a>                }
+            </td>
+            <td>
+                @ticketAttachment.Description
+            </td>
+            <td>
+                @ticketAttachment.Created
+            </td>
+            <td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="row">
+                        @Html.ActionLink(" Delete ", "Delete", "TicketAttachments", new { ticketAttachment.Id }, null)
+                    </div>
+                }
+            </td>
+        </tr>
+    }
+</table>

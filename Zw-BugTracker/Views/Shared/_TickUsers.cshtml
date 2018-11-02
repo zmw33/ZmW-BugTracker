@@ -1,0 +1,17 @@
+﻿@using Zw_BugTracker.Helpers
+@model Zw_BugTracker.Models.Ticket
+
+<h3>Users</h3>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("User On Ticket")
+        </th>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.AssignedToUser.Email)
+        </td>
+    </tr>
+</table>
+        

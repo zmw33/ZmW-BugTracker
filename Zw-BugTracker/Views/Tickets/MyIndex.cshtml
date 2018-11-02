@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Zw_BugTracker.Models.Ticket>
+
+@{
+    ViewBag.Title = "MyIndex";
+}
+
+
+<body>
+    <div id="page-wrapper">
+        <br />
+        <h2>My Ticket(s)</h2>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TicketPriority)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TicketStatus)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TicketType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Project)
+                    </th>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.TicketComments)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TicketAttachments)
+                    </th>*@
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TicketPriority.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TicketStatus.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TicketType.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Project.Name)
+                    </td>
+                    @*<td>
+                        @Html.Display(item.TicketComments.Count.ToString())
+                    </td>
+                    <td>
+                        @Html.Display(item.TicketAttachments.Count.ToString())
+                    </td>*@
+                    <td>
+                        <div class="row">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                        </div>
+                        <div class="row">
+                            @Html.ActionLink("Details", "Details", new { id = item.Id })
+                        </div>
+                        <div class="row">
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </div>                     
+                        <div class="row">
+                            @Html.ActionLink("Add Comment", "Create", "TicketComments")
+                        </div>
+                        <div class="row">
+                            @Html.ActionLink("Add Attachment", "Create", "TicketAttachments")
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</body>

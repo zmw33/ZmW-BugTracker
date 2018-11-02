@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "TicketAssignment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>TicketAssignment</h2>
+
+<body>
+    <div id="page-wrapper">
+        <div class="container">
+            <br />
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Ticket Assignment</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 text-center developer">
+                    @Html.Label("Select User")
+                </div>
+                <div class="col-lg-6 text-center ticket">
+                    @Html.Label("Select Ticket(s)")
+                </div>
+            </div>
+
+            @using (Html.BeginForm("TicketAssignment", "ProjMan", FormMethod.Post, new { enctype = "Multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="row">
+                    <div class="col-lg-6 developers">
+                        @Html.DropDownList("Developers", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <div class="col-lg-6 tickets">
+                        @Html.ListBox("Tickets", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 text-center" style="padding-top:5px">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+
+<style>
+    .tickets {
+        max-height: 150px;
+        padding-right: 200px;
+    }
+
+    .developers {
+        padding-left: 200px;
+    }
+
+    .developer {
+        padding-right: 100px;
+    }
+
+    .ticket {
+        padding-left: 100px;
+    }
+</style>

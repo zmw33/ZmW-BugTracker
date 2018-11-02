@@ -1,0 +1,193 @@
+﻿@using System.Web.Configuration
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cooper+Black">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/pace-theme-big-counter.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/main-style.css" rel="stylesheet" />
+
+    <style>
+        .login{
+            color: black;
+        }
+        
+        .dad {
+            font-family: 'Cooper Black', serif;
+        }
+
+        .dad2 {
+            font-family: 'Cooper Black', serif;
+            font-size: 48px;
+        }
+
+        .mom {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+        }
+
+        .box {
+            border: solid;
+            border-width: 1px;
+            background-color: goldenrod;
+            border-radius: 25px;
+        }
+
+        .kid {
+            height: 550px;
+            /*width: 292px;*/
+        }
+    </style>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZmW-BugTracker</title>
+    <link rel="icon" class="fav" href="~/Img/bug-silhouette-image.png" />
+</head>
+
+<body>
+
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
+        <header class="nav">
+            <p class="text-center dad2">
+                <i>Choose A Role:</i>
+            </p>
+        </header>
+    </nav>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <p class="dad" style="font-size: 15px">
+                <i>--- @Html.ActionLink("Login", "Login", "Account") or @Html.ActionLink("Register", "Register", "Account") ---</i>
+            </p>
+        </div>
+    </div>
+
+    <div class="container" style="padding-top:10px">
+        <div class="row">
+            <div class="col-lg-3 kid box">
+                <h2 class="text-center dad"><u>Administrator:</u></h2>
+                <h3 class="text-center dad">(Admin)</h3><br />
+                <p class="text-left mom">
+                    <span>1.)<b> Assign roles to users</b></span><hr />
+                    <span>2.)<b> Assign projects to users</b></span><hr />
+                    <span>3.)<b> Create projects</b></span><hr />
+                    <span>4.)<b> View list of all projects</b></span><hr />
+                    <span>5.)<b> View list of all tickets</b></span><hr />
+                    <span>6.)<b> Add comments to any ticket</b></span><hr />
+                    <span>7.)<b> Add attachments to any ticket</b></span>
+                </p>
+            </div>
+            <div class="col-lg-3 kid box">
+                <h2 class="text-center dad"><u>Project Manager:</u></h2>
+                <h3 class="text-center dad">(PM)</h3><br />
+                <p class="text-left mom">
+                    <span>1.)<b> Assign tickets to developers</b></span><hr />
+                    <span>2.)<b> View list of tickets belonging to their projects</b></span><hr />
+                    <span>3.)<b> Edit tickets belonging to their projects</b></span><hr />
+                    <span>4.)<b> Add comments to tickets belonging to their projects</b></span><hr />
+                    <span>5.)<b> Add attachments to tickets belonging to their projects</b></span>
+                </p>
+            </div>
+            <div class="col-lg-3 kid box">
+                <h2 class="text-center dad"><u>Submitter:</u></h2>
+                <h3 class="text-center dad">(Sub)</h3><br />
+                <p class="text-left mom">
+                    <span>1.)<b> Create tickets</b></span><hr />
+                    <span>2.)<b> View list of tickets they have created</b></span><hr />
+                    <span>3.)<b> Add comments to tickets they have created</b></span><hr />
+                    <span>4.)<b> Add attachments to tickets they have created</b></span>
+                </p>
+            </div>
+            <div class="col-lg-3 kid box">
+                <h2 class="text-center dad"><u>Developer:</u></h2>
+                <h3 class="text-center dad">(Dev)</h3><br />
+                <p class="text-left mom">
+                    <span>1.)<b> View list of tickets belonging to projects they are assigned</b></span><hr />
+                    <span>2.)<b> View list of tickets they are assigned</b></span><hr />
+                    <span>3.)<b> Add comments to tickets they are assigned</b></span><hr />
+                    <span>4.)<b> Add attachments to tickets they are assigned</b></span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container" style="padding-top:5px">
+
+        <div class="row">
+            <div class="col-lg-3">
+                <!--login button-->
+                <div class="text-center form-group">
+                    @using (Html.BeginForm("DemoLogin", "Account", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("Role", "DemoAdminEmail")
+                        <button type="submit" class="btn btn-warning">Admin</button>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <!--login button-->
+                <div class="text-center form-group">
+                    @using (Html.BeginForm("DemoLogin", "Account", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("Role", "DemoPMEmail")
+                        <button type="submit" class="btn btn-warning">P.M.</button>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <!--login button-->
+                <div class="text-center form-group">
+                    @using (Html.BeginForm("DemoLogin", "Account", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("Role", "DemoSubEmail")
+                        <button type="submit" class="btn btn-warning">Sub</button>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <!--login button-->
+                <div class="text-center form-group">
+                    @{
+                        var demoDevPassword = WebConfigurationManager.AppSettings["DemoDevPassword"];
+                    }
+                    @using (Html.BeginForm("DemoLogin", "Account", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("Role", "DemoDevEmail")
+                        <button type="submit" class="btn btn-warning">Dev</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <p class="dad" style="font-size: 15px">
+                <i>--- @Html.ActionLink("Login", "Login", "Account") or @Html.ActionLink("Register", "Register", "Account") ---</i>
+            </p>
+        </div>
+    </div>
+
+</body>
+
+</html>

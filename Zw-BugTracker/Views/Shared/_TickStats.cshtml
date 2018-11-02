@@ -1,0 +1,41 @@
+﻿@model Zw_BugTracker.Models.Ticket
+
+<h3>Ticket</h3>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Title")
+        </th>
+        <th>
+            @Html.DisplayName("Description")
+        </th>
+        <th>
+            @Html.DisplayName("Type")
+        </th>
+        <th>
+            @Html.DisplayName("Priority")
+        </th>
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.TicketType.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.TicketPriority.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.TicketStatus.Name)
+        </td>
+    </tr>
+</table>
+

@@ -1,0 +1,50 @@
+﻿@model Zw_BugTracker.Models.Ticket
+
+<h3>History</h3>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Title")
+        </th>
+        @*<th>
+                @Html.DisplayName("UserId")
+            </th>*@
+        <th>
+            @Html.DisplayName("Property")
+        </th>
+        <th>
+            @Html.DisplayName("OldValue")
+        </th>
+        <th>
+            @Html.DisplayName("NewValue")
+        </th>
+        <th>
+            @Html.DisplayName("Changed")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.TicketHistories)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ticket.Title)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Property)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OldValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NewValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Changed)
+            </td>
+        </tr>
+    }
+</table>

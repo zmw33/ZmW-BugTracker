@@ -1,0 +1,24 @@
+﻿@model Zw_BugTracker.Models.Ticket
+
+<h3>Project</h3>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Name")
+        </th>
+        <th>
+            @Html.DisplayName("Description")
+        </th>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Project.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Project.Description)
+        </td>
+    </tr>
+        
+</table>
+

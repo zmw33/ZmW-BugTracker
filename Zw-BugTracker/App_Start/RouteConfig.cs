@@ -16,7 +16,7 @@ namespace Zw_BugTracker
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Account", action = "DemoLogin", id = UrlParameter.Optional }
             );
         }
     }

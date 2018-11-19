@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
@@ -234,17 +235,25 @@ namespace Zw_BugTracker.Controllers
                 // Send an email with this link
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                //await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                var from = ConfigurationManager.AppSettings["emailfrom"];
-                var email = new MailMessage(from, model.Email)
-                {
-                    Subject = "Reset Password",
-                    Body = "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>",
-                    IsBodyHtml = true
-                };
-                var svc = new PersonalEmail();
-                await svc.SendAsync(email);
+                var body = "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>";
 
+                try
+                {
+                    var email = new MailMessage(WebConfigurationManager.AppSettings["emailfrom"], model.Email)
+                    {
+                        Subject = "You have requested to reset your password...",
+                        Body = body,
+                        IsBodyHtml = true
+                    };
+
+                    var svc = new PersonalEmail();
+                    await svc.SendAsync(email);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    await Task.FromResult(0);
+                }
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
